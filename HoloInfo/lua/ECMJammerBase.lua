@@ -3,7 +3,7 @@ HoloInfo:clone(ECMJammerBase)
 function ECMJammerBase:set_active(active, ...)
 	self.old.set_active(self,active ,...)
 	if HoloInfo._hudinfo then
-		if active == true then
+		if active == true and managers.groupai:state():whisper_mode() then
 		    HoloInfo._hudinfo:create_timer(self._unit:id())
 	    end
 	end
