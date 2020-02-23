@@ -54,7 +54,7 @@
     "Stamina_size_desc" : "The size of the stamina",
 	"Infotimer_max_desc" : "The max timers that can appear in one row after it exceeds the max it will go down and start a new row",
     "hostages_enable_title" : "Always show hostage box",
-    "hostages_enable_desc" : "If ticked this will move the hostages box to benth assault/casing box and will not dissapear after assault/casing/no point of return start.",
+    "hostages_enable_desc" : "If ticked the hostage box will always be visible.",
 	"HoloInfo_alpha_title" : "Background Opacity",
 	"HoloInfo_alpha_desc" : "Change the opacity of the infoboxes and timers background(0 = invisible, 0.5 = Half visible,  1 = Fully visible) ",
    

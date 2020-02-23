@@ -261,7 +261,7 @@ function HUDInfo:init(hud)
     self.max_pagers = 0
 
 	for i, val in ipairs(tweak_data.player.alarm_pager.bluff_success_chance) do
-		if val > 0 then
+		if val > 4 then
 			self.max_pagers = math.max(self.max_pagers, i)
 		end
 	end
@@ -545,7 +545,7 @@ function HUDInfo:CountPagers(config)
     if HoloInfo.options[config.option] then
         local info_text = self._info_panel:child(config.name):child("text")
         local info_num = self.max_pagers
-        config.visible = managers.groupai:state():whisper_mode()
+        config.visible = managers.groupai:state():whisper_mode() and managers.groupai:state()._nr_successful_alarm_pager_bluffs > 0
         if tonumber(info_text:text()) ~= info_num then
             info_text:set_text(info_num)
             info_text:animate(callback(self, self, "flash_text"))
@@ -555,7 +555,7 @@ function HUDInfo:CountPagers(config)
     end
 end
 function HUDInfo:pager_increase()
-	self.max_pagers = self.max_pagers -1
+	self.max_pagers = self.max_pagers +1
 end
 
 function HUDInfo:SetTop(rect, Top , icon)
@@ -627,6 +627,7 @@ if HoloInfo.options.dominated_enable then
 function HUDInfo:CountHostages(config)
     local info_text = self._info_panel:child(config.name):child("text")
     local info_num = managers.groupai:state()._hostage_headcount - managers.groupai:state():police_hostage_count()
+	config.visible = managers.groupai:state()._hostage_headcount - managers.groupai:state():police_hostage_count() > 0 or HoloInfo.options.hostages_enable		
     if tonumber(info_text:text()) ~= info_num then
         info_text:set_text(info_num)
         info_text:animate(callback(self, self, "flash_text"))
@@ -637,6 +638,7 @@ if not HoloInfo.options.dominated_enable then
 	function HUDInfo:CountHostages(config)
     local info_text = self._info_panel:child(config.name):child("text")
     local info_num = managers.groupai:state()._hostage_headcount
+	config.visible = managers.groupai:state()._hostage_headcount > 0 or HoloInfo.options.hostages_enable		
     if tonumber(info_text:text()) ~= info_num then
         info_text:set_text(info_num)
         info_text:animate(callback(self, self, "flash_text"))
