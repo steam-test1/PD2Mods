@@ -1,3 +1,5 @@
+if HoloInfo.options.Digitaltimer_enable then
+
 HoloInfo:clone(DigitalGui)
 function DigitalGui:setup(...)
     self.old.setup(self, ...)
@@ -115,3 +117,4 @@ function DigitalGui:destroy(...)
     end
 end
 
+end
